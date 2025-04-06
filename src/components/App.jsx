@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        <p>これからTODOアプリを実装しますよー5</p>
+        <p>これからTODOアプリを実装しますよー7</p>
       </div>
     </>
   )
