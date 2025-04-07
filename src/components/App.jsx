@@ -14,8 +14,17 @@ function App() {
     };
     fetchData();
   }, []);
-
   console.log("TODOリスト：", todoList);
+
+  const inCompletedList = todoList.filter((todo) => {
+    return !todo.done;
+  });
+  console.log("完了TODOリスト：", inCompletedList);
+
+  const completedList = todoList.filter((todo) => {
+    return todo.done;
+  });
+  console.log("完了TODOリスト：",completedList);
   
   return (
     <>
@@ -25,9 +34,26 @@ function App() {
 
       <h2>TODOリストだよ</h2>
       <ul>
-        {todoList.map((todo) => (
+        {inCompletedList.map((todo) => (
           <li key={todo.id}>
-            {todo.content}({todo.done ? "完了" : "未完了"})
+            {todo.content}
+            <button>
+              {todo.done ? "未完了リストへ" : "完了リストへ"}
+            </button>
+            <button>削除！</button>
+          </li>
+        ))}
+      </ul>
+
+      <h2>完了TODOリストだよ</h2>
+      <ul>
+        {completedList.map((todo) => (
+          <li key={todo.id}>
+            {todo.content}
+            <button>
+              {todo.done ? "未完了リストへ" : "完了リストへ"}
+            </button>
+            <button>削除！</button>
           </li>
         ))}
       </ul>
