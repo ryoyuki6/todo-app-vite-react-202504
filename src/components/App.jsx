@@ -4,6 +4,32 @@ import axios from "axios"
 
 const todoDataUrl = "http://localhost:3100/todos";
 
+const TodoTitle = ({ title, as }) => {
+  if (as === "h1") return <h1>{title}</h1>;
+  if (as === "h2") return <h2>{title}</h2>;
+  return <p>{title}</p>;
+};
+
+const TodoItem = ({ todo }) => {
+  return (
+    <li>
+      {todo.content}
+      <button>{todo.done ? "未完了リストへ" : "完了リストへ"}</button>
+      <button>削除</button>
+    </li>
+  );
+};
+
+const TodoList = ({ todoList }) => {
+  return (
+    <ul>
+      {todoList.map((todo) => (
+        <TodoItem todo={todo} key={todo.id} />
+      ))}
+    </ul>
+  );
+};
+
 function App() {
   const [todoList, setTodoList] = useState([]);
   
@@ -19,44 +45,22 @@ function App() {
   const inCompletedList = todoList.filter((todo) => {
     return !todo.done;
   });
-  console.log("完了TODOリスト：", inCompletedList);
 
   const completedList = todoList.filter((todo) => {
     return todo.done;
   });
-  console.log("完了TODOリスト：",completedList);
   
   return (
     <>
-      <h1>TODO進捗管理だよ</h1>
+      <TodoTitle title="TODO進捗管理" as="h1" />
       <textarea />
       <button>+ TODOを追加します</button>
 
-      <h2>TODOリストだよ</h2>
-      <ul>
-        {inCompletedList.map((todo) => (
-          <li key={todo.id}>
-            {todo.content}
-            <button>
-              {todo.done ? "未完了リストへ" : "完了リストへ"}
-            </button>
-            <button>削除！</button>
-          </li>
-        ))}
-      </ul>
+      <TodoTitle title="未完了TODOリスト" as="h2" />
+      <TodoList todoList={inCompletedList} />
 
-      <h2>完了TODOリストだよ</h2>
-      <ul>
-        {completedList.map((todo) => (
-          <li key={todo.id}>
-            {todo.content}
-            <button>
-              {todo.done ? "未完了リストへ" : "完了リストへ"}
-            </button>
-            <button>削除！</button>
-          </li>
-        ))}
-      </ul>
+      <TodoTitle title="完了TODOリスト" as="h2" />
+      <TodoList todoList={completedList} />
     </>
   );
 }
