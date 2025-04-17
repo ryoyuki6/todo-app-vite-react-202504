@@ -3,12 +3,12 @@
     {
       "id": "1",
       "content": "Create React app をインストールする",
-      "done": true
+      "done": false
     },
     {
       "id": "2",
       "content": "JSON Server仮のAPIを作成する",
-      "done": false
+      "done": true
     },
     {
       "id": "3",
@@ -18,21 +18,11 @@
     {
       "id": "01JRP7SV1N1AZT9GK9C0MF7MAG",
       "content": "テスト入力",
-      "done": false
+      "done": true
     },
     {
       "id": "01JRP7T7N4D15FXWSYPBVYXXH2",
       "content": "テスト2",
-      "done": false
-    },
-    {
-      "id": "01JRVPMHSY3T2634NSBZEKS03J",
-      "content": "テスト3",
-      "done": false
-    },
-    {
-      "id": "01JRVQ79ZD571TS2QFF0FQXXEJ",
-      "content": "テスト4",
       "done": false
     }
   ]
