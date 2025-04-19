@@ -1,9 +1,14 @@
-# 予定
+# 概要
+「基礎から学ぶ React/React Hooks」の「34 TODOアプリを実装しよう」のコード（改）です。
+
+# 構成
+
 - Frontend
     - React(Javscript) + Vite
-    - Keycloak認証
 - backend
-    - API - Go (Clean Architecture)
+    - JSON Server
+
+# 実行方法
 
 ## JSON Server を実行
 
