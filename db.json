@@ -8,16 +8,11 @@
     {
       "id": "2",
       "content": "JSON Server仮のAPIを作成する",
-      "done": true
+      "done": false
     },
     {
       "id": "3",
       "content": "Chakra UIをインストールする",
-      "done": false
-    },
-    {
-      "id": "01JRP7SV1N1AZT9GK9C0MF7MAG",
-      "content": "テスト入力",
       "done": true
     }
   ]
