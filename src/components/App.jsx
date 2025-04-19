@@ -1,52 +1,9 @@
 import React, { useRef } from "react";
 import { useTodo } from "../hooks/useTodo";
 
-const TodoTitle = ({ title, as }) => {
-  if (as === "h1") return <h1>{title}</h1>;
-  if (as === "h2") return <h2>{title}</h2>;
-  return <p>{title}</p>;
-};
-
-const TodoItem = 
-  ({ todo, toggleTodoListItemStatus, deleteTodoListItem }) => {
-    const handleToggleTodoListItemStatus =
-      () => toggleTodoListItemStatus(todo.id, todo.done);
-    const handleDeleteTodoListItem = () => deleteTodoListItem(todo.id);
-
-    return (
-      <li>
-        {todo.content}
-        <button onClick={handleToggleTodoListItemStatus}>
-          {todo.done ? "未完了リストへ" : "完了リストへ"}
-        </button>
-        <button onClick={handleDeleteTodoListItem}>削除</button>
-    </li>
-  );
-};
-
-const TodoList = ({ todoList, toggleTodoListItemStatus, deleteTodoListItem }) => {
-  return (
-    <ul>
-      {todoList.map((todo) => (
-        <TodoItem 
-          todo={todo} 
-          key={todo.id} 
-          toggleTodoListItemStatus={toggleTodoListItemStatus}
-          deleteTodoListItem={deleteTodoListItem} 
-        />
-      ))}
-    </ul>
-  );
-};
-
-const TodoAdd = ({ inputEl, handleAddTodoListItem}) => {
-  return (
-    <>
-      <textarea ref={inputEl} />
-      <button onClick={handleAddTodoListItem}>＋ TODOを追加だよ</button>
-    </>
-  );
-};
+import { TodoTitle } from "./TodoTitle.jsx";
+import { TodoAdd } from "./TodoAdd.jsx";
+import { TodoList } from "./TodoList.jsx";
 
 function App() {
   const {
@@ -60,7 +17,6 @@ function App() {
 
   const handleAddTodoListItem = () => {
     if (inputEl.current.value === "") return;
-
     addTodoListItem(inputEl.current.value);
     inputEl.current.value = "";
   }
@@ -76,20 +32,24 @@ function App() {
   return (
     <>
       <TodoTitle title="TODO進捗管理" as="h1" />
-      <TodoAdd inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
-
-      <TodoTitle title="未完了TODOリスト" as="h2" />
+      <TodoAdd 
+        buttonText="＋ TODOを追加"
+        inputEl={inputEl} 
+        handleAddTodoListItem={handleAddTodoListItem} 
+      />
       <TodoList 
         todoList={inCompletedList}
         toggleTodoListItemStatus={toggleTodoListItemStatus}
         deleteTodoListItem={deleteTodoListItem} 
+        title="未完了TODOリスト"
+        as="h2"
       />
-
-      <TodoTitle title="完了TODOリスト" as="h2" />
       <TodoList 
         todoList={completedList} 
         toggleTodoListItemStatus={toggleTodoListItemStatus}
         deleteTodoListItem={deleteTodoListItem}
+        title="完了TODOリスト"
+        as="h2"
       />
     </>
   );
